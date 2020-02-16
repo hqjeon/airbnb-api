@@ -21,3 +21,12 @@ class ReadUserSerializer(serializers.ModelSerializer):
             "is_active",
             "date_joined",
         )
+
+
+class WriteUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ("username", "first_name", "last_name", "email")
+
+    def validate_first_name(self, value):
+        return value.upper()
